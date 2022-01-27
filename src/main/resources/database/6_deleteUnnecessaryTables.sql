@@ -1,0 +1,1 @@
+drop table if exists developers_by_project, salaries, java_developers, middle_developers, projects_info;
