@@ -1,5 +1,8 @@
 package model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,7 @@ public class Developer {
     private Integer salary;
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(
             name = "developers_skills",
             joinColumns = { @JoinColumn(name = "developer_id") },
@@ -26,6 +30,7 @@ public class Developer {
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(
             name = "developers_projects",
             joinColumns = { @JoinColumn(name = "developer_id") },
